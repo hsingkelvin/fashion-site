@@ -4,54 +4,113 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#ffffff">
 <title>服飾品牌落地頁（骨架）</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header><div class="wrap nav">
-  <a class="logo" href="#top">品牌名稱</a>
+  <a class="logo" href="#top"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l10 10-10 10L2 12z" fill="var(--accent)"/><path d="M12 7l5 5-5 5-5-5z" fill="#fff"/></svg>品牌名稱</a>
   <ul class="menu" id="menu"></ul>
   <div class="tools">
-    <button class="icon" id="btnAuth" aria-label="會員登入">登入</button>
-    <button class="icon" id="btnCart" aria-label="購物車">購物車<span class="badge" id="cartCount">0</span></button>
-    <button class="icon burger" id="burger" aria-label="開啟選單">選單</button>
+    <button class="icon" id="btnAuth" aria-label="會員登入"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></button>
+    <button class="icon" id="btnCart" aria-label="購物車"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span class="badge" id="cartCount">0</span></button>
+    <button class="icon burger" id="burger" aria-label="開啟選單"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
 </div></header>
 <main id="top">
 <section class="hero"><div class="wrap">
-  <div><h1>日常穿得舒服，才是好看</h1>
-  <p>【假文案】用耐穿的面料與剪裁，做每天都想穿的基本款。</p>
-  <a class="btn" href="#plans">逛逛新品</a> <a class="btn ghost" href="#sizing">看尺寸指南</a></div>
+  <div>
+    <p class="eyebrow">NEW ARRIVALS</p>
+    <h1>日常穿得舒服，<mark>才是好看</mark></h1>
+    <p class="lead" style="margin-bottom:24px">【範例文案】用耐穿的面料與俐落剪裁，做每天都想穿的基本款。</p>
+    <div class="cta"><a class="btn" href="#plans">逛逛新品</a><a class="btn ghost" href="#sizing">看尺寸指南</a></div>
+    <ul class="trust"><li>7 天鑑賞期（範例）</li><li>48 小時出貨（範例）</li><li>滿額免運（範例）</li></ul>
+  </div>
   <div class="tiles" id="tiles" aria-hidden="true"></div>
 </div></section>
-<section class="alt" id="problem"><div class="wrap"><h2>為什麼選我們</h2><p>【假文案】說明品牌的三個重點。</p>
-  <div class="grid"><div class="card"><h3>面料</h3><p>說明文字</p></div><div class="card"><h3>剪裁</h3><p>說明文字</p></div><div class="card"><h3>尺寸</h3><p>說明文字</p></div></div></div></section>
-<section id="tech"><div class="wrap"><h2>面料比一比</h2>
-  <div class="grid"><div class="card"><div class="ph">一般面料特寫</div><h3>一般面料</h3><p>說明</p></div><div class="card"><div class="ph">本品牌面料特寫</div><h3>本品牌面料</h3><p>說明</p></div></div></div></section>
-<section class="alt" id="how"><div class="wrap"><h2>三步驟買到合身的衣服</h2>
-  <div class="steps"><div class="card"><h3>選款式</h3><p>說明</p></div><div class="card"><h3>對照尺寸</h3><p>說明</p></div><div class="card"><h3>下單收貨</h3><p>說明</p></div></div></div></section>
-<section id="certs"><div class="wrap"><h2>品質檢驗</h2>
-  <div class="grid"><div class="card"><h3>檢驗項目</h3><p>結果與報告連結</p></div><div class="card"><h3>檢驗項目</h3><p>結果與報告連結</p></div><div class="card"><h3>檢驗項目</h3><p>結果與報告連結</p></div></div></div></section>
-<section class="alt" id="compare"><div class="wrap"><h2>與其他選擇比較</h2><div class="compare"><table>
-  <thead><tr><th></th><th>快時尚</th><th>訂製</th><th>本品牌</th></tr></thead>
-  <tbody><tr><th>價格</th><td>—</td><td>—</td><td>—</td></tr><tr><th>面料</th><td>—</td><td>—</td><td>—</td></tr><tr><th>交期</th><td>—</td><td>—</td><td>—</td></tr><tr><th>合身度</th><td>—</td><td>—</td><td>—</td></tr></tbody></table></div></div></section>
-<section id="reviews"><div class="wrap"><h2>穿過的人怎麼說</h2><div class="rail" id="reviewRail"></div></div></section>
-<section class="alt" id="plans"><div class="wrap"><h2>精選商品</h2><div class="grid" id="planGrid"><p>載入中…</p></div></div></section>
-<section id="sizing"><div class="wrap"><h2>尺寸指南</h2><p>【預留】尺寸實測表與量身教學影片。</p><div class="ph" style="max-width:720px;aspect-ratio:16/9">尺寸表／影片嵌入位置</div></div></section>
-<section class="alt" id="faq"><div class="wrap"><h2>常見問題</h2><div id="faqList"></div></div></section>
+<section class="alt" id="problem"><div class="wrap">
+  <h2>為什麼選<mark>我們</mark></h2>
+  <p class="lead">【範例文案】三個讓日常更好穿的理由。</p>
+  <div class="grid stats">
+    <div class="card"><div class="num">98%</div><h3>面料舒適度</h3><p>範例數據。正式上線請換成自己的調查結果並註明來源。</p></div>
+    <div class="card"><div class="num">3 道</div><h3>版型打樣</h3><p>範例數據。說明每件衣服出貨前的修版流程。</p></div>
+    <div class="card"><div class="num">48 hr</div><h3>快速出貨</h3><p>範例數據。現貨商品的出貨時間。</p></div>
+  </div>
+</div></section>
+<section id="tech"><div class="wrap">
+  <h2>面料<mark>比一比</mark></h2>
+  <p class="lead">【範例文案】織法越密、起毬越少，穿洗後仍然挺。</p>
+  <div class="grid">
+    <div class="card"><div class="swatch a"></div><h3>一般面料</h3><p>織紋鬆散，洗幾次容易變形、起毬。</p></div>
+    <div class="card"><div class="swatch b"></div><h3>本品牌面料</h3><p>緊密織法，觸感柔軟，耐洗不走樣。</p></div>
+  </div>
+</div></section>
+<section class="alt" id="how"><div class="wrap">
+  <h2>三步驟買到<mark>合身</mark>的衣服</h2>
+  <div class="steps">
+    <div class="card"><h3>選款式</h3><p>依場合挑選喜歡的單品與顏色。</p></div>
+    <div class="card"><h3>對照尺寸</h3><p>用尺寸指南對照你的量身數據。</p></div>
+    <div class="card"><h3>下單收貨</h3><p>確認方案後結帳，等著收貨。</p></div>
+  </div>
+</div></section>
+<section id="certs"><div class="wrap">
+  <h2>品質<mark>檢驗</mark></h2>
+  <p class="lead">【範例】請填入你實際取得的檢驗項目與報告連結，不要放未經證實的宣稱。</p>
+  <div class="grid">
+    <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><h3>檢驗項目一</h3><p>結果與報告連結</p></div>
+    <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><h3>檢驗項目二</h3><p>結果與報告連結</p></div>
+    <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><h3>檢驗項目三</h3><p>結果與報告連結</p></div>
+  </div>
+</div></section>
+<section class="alt" id="compare"><div class="wrap">
+  <h2>與其他選擇<mark>比較</mark></h2>
+  <div class="compare"><table>
+    <thead><tr><th></th><th>快時尚</th><th>訂製</th><th>本品牌</th></tr></thead>
+    <tbody>
+      <tr><th>價格</th><td>低</td><td>高</td><td>中等</td></tr>
+      <tr><th>面料</th><td>普通</td><td>可選</td><td>精選</td></tr>
+      <tr><th>交期</th><td>即買即穿</td><td>數週</td><td>2～3 天</td></tr>
+      <tr><th>合身度</th><td>通用尺寸</td><td>量身</td><td>尺寸指南</td></tr>
+    </tbody></table></div>
+</div></section>
+<section id="reviews"><div class="wrap">
+  <h2>穿過的人<mark>怎麼說</mark></h2>
+  <div class="rail" id="reviewRail"></div>
+</div></section>
+<section class="alt" id="plans"><div class="wrap">
+  <h2>精選<mark>商品</mark></h2>
+  <p class="lead">【範例】商品圖為自繪插畫，之後可換成實拍照片。</p>
+  <div class="grid" id="planGrid"><p>載入中…</p></div>
+</div></section>
+<section id="sizing"><div class="wrap">
+  <h2>尺寸<mark>指南</mark></h2>
+  <p class="lead">【範例數據】單位為公分，請換成實際量測。</p>
+  <div class="compare"><table>
+    <thead><tr><th>尺寸</th><th>胸寬</th><th>衣長</th><th>肩寬</th></tr></thead>
+    <tbody>
+      <tr><th>S</th><td>50</td><td>66</td><td>42</td></tr>
+      <tr><th>M</th><td>52</td><td>68</td><td>44</td></tr>
+      <tr><th>L</th><td>54</td><td>70</td><td>46</td></tr>
+      <tr><th>XL</th><td>56</td><td>72</td><td>48</td></tr>
+    </tbody></table></div>
+</div></section>
+<section class="alt" id="faq"><div class="wrap">
+  <h2>常見<mark>問題</mark></h2>
+  <div id="faqList"></div>
+</div></section>
 </main>
 <footer><div class="wrap fgrid">
-  <div><strong>品牌名稱</strong><p style="color:inherit;opacity:.8">公司名稱／統編</p></div>
+  <div><strong>品牌名稱</strong><p>公司名稱／統編</p></div>
   <div><strong>關於我們</strong><a href="#">品牌故事</a><a href="#">門市資訊</a></div>
   <div><strong>顧客服務</strong><a href="#">隱私權政策</a><a href="#">條款與細則</a><a href="#">退換貨政策</a></div>
   <div><strong>聯絡我們</strong><a href="#">地址</a><a href="#">電話</a><a href="#">營業時間</a></div>
 </div></footer>
-<a class="btn fab" href="#">線上諮詢</a>
+<a class="fab" href="#" aria-label="線上諮詢"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.8 3 3 6.4 3 10.6c0 2.5 1.4 4.6 3.6 6L6 20.5l3.6-2c.8.2 1.6.3 2.4.3 5.2 0 9-3.4 9-7.6S17.2 3 12 3z"/></svg></a>
+<button class="totop" id="toTop" aria-label="回到頂端"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
 <div class="layer" id="cartLayer"><aside class="drawer" aria-label="購物車">
-  <div class="row"><strong>購物車</strong><button class="icon" data-close>關閉</button></div>
+  <div class="row"><strong>購物車</strong><button class="link" data-close>關閉</button></div>
   <div id="cartBody"></div><p id="cartTotal" style="margin-top:16px;color:var(--ink);font-weight:700"></p>
   <button class="btn" id="btnCheckout" style="width:100%">前往結帳</button></aside></div>
 <div class="layer" id="authLayer"><div class="modal" role="dialog" aria-label="會員登入"><h3>會員登入</h3>
