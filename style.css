@@ -106,8 +106,8 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
 /* 前後對比 */
 .ba{position:relative;aspect-ratio:1355/609;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);user-select:none;touch-action:pan-y}
 .ba-layer{position:absolute;inset:0;background-size:cover}
-.ba-a{background:#fff url(img/before.webp) center/cover no-repeat}
-.ba-b{background:#fff url(img/after.webp) center/cover no-repeat;clip-path:inset(0 0 0 50%)}
+.ba-a{background:#fff url(before.webp) center/cover no-repeat}
+.ba-b{background:#fff url(after.webp) center/cover no-repeat;clip-path:inset(0 0 0 50%)}
 .ba-tag{position:absolute;left:16px;top:16px;background:rgba(0,0,0,.55);color:#fff;padding:3px 14px;border-radius:999px;font-size:.82rem;font-weight:700}
 .ba-b .ba-tag{left:auto;right:16px;background:var(--accent)}
 .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;transform:translateX(-50%);pointer-events:none}
