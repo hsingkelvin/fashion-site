@@ -1,1 +1,5 @@
-[{"label":"首頁","href":"#top"}]
+[{"label":"首頁","href":"#top"},
+ {"label":"商品","children":[{"label":"上衣","href":"#plans"},{"label":"褲裝","href":"#plans"},{"label":"外套","href":"#plans"}]},
+ {"label":"尺寸指南","href":"#sizing"},
+ {"label":"穿搭誌","children":[{"label":"通勤穿搭","href":"#"},{"label":"洗滌保養","href":"#"}]},
+ {"label":"品牌故事","href":"#"}]

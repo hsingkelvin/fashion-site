@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>服飾品牌落地頁（骨架）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="#top">品牌名稱</a>
+  <ul class="menu" id="menu"></ul>
+  <div class="tools">
+    <button class="icon" id="btnAuth" aria-label="會員登入">登入</button>
+    <button class="icon" id="btnCart" aria-label="購物車">購物車<span class="badge" id="cartCount">0</span></button>
+    <button class="icon burger" id="burger" aria-label="開啟選單">選單</button>
+  </div>
+</div></header>
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div><h1>日常穿得舒服，才是好看</h1>
+  <p>【假文案】用耐穿的面料與剪裁，做每天都想穿的基本款。</p>
+  <a class="btn" href="#plans">逛逛新品</a> <a class="btn ghost" href="#sizing">看尺寸指南</a></div>
+  <div class="tiles" id="tiles" aria-hidden="true"></div>
+</div></section>
+<section class="alt" id="problem"><div class="wrap"><h2>為什麼選我們</h2><p>【假文案】說明品牌的三個重點。</p>
+  <div class="grid"><div class="card"><h3>面料</h3><p>說明文字</p></div><div class="card"><h3>剪裁</h3><p>說明文字</p></div><div class="card"><h3>尺寸</h3><p>說明文字</p></div></div></div></section>
+<section id="tech"><div class="wrap"><h2>面料比一比</h2>
+  <div class="grid"><div class="card"><div class="ph">一般面料特寫</div><h3>一般面料</h3><p>說明</p></div><div class="card"><div class="ph">本品牌面料特寫</div><h3>本品牌面料</h3><p>說明</p></div></div></div></section>
+<section class="alt" id="how"><div class="wrap"><h2>三步驟買到合身的衣服</h2>
+  <div class="steps"><div class="card"><h3>選款式</h3><p>說明</p></div><div class="card"><h3>對照尺寸</h3><p>說明</p></div><div class="card"><h3>下單收貨</h3><p>說明</p></div></div></div></section>
+<section id="certs"><div class="wrap"><h2>品質檢驗</h2>
+  <div class="grid"><div class="card"><h3>檢驗項目</h3><p>結果與報告連結</p></div><div class="card"><h3>檢驗項目</h3><p>結果與報告連結</p></div><div class="card"><h3>檢驗項目</h3><p>結果與報告連結</p></div></div></div></section>
+<section class="alt" id="compare"><div class="wrap"><h2>與其他選擇比較</h2><div class="compare"><table>
+  <thead><tr><th></th><th>快時尚</th><th>訂製</th><th>本品牌</th></tr></thead>
+  <tbody><tr><th>價格</th><td>—</td><td>—</td><td>—</td></tr><tr><th>面料</th><td>—</td><td>—</td><td>—</td></tr><tr><th>交期</th><td>—</td><td>—</td><td>—</td></tr><tr><th>合身度</th><td>—</td><td>—</td><td>—</td></tr></tbody></table></div></div></section>
+<section id="reviews"><div class="wrap"><h2>穿過的人怎麼說</h2><div class="rail" id="reviewRail"></div></div></section>
+<section class="alt" id="plans"><div class="wrap"><h2>精選商品</h2><div class="grid" id="planGrid"><p>載入中…</p></div></div></section>
+<section id="sizing"><div class="wrap"><h2>尺寸指南</h2><p>【預留】尺寸實測表與量身教學影片。</p><div class="ph" style="max-width:720px;aspect-ratio:16/9">尺寸表／影片嵌入位置</div></div></section>
+<section class="alt" id="faq"><div class="wrap"><h2>常見問題</h2><div id="faqList"></div></div></section>
+</main>
+<footer><div class="wrap fgrid">
+  <div><strong>品牌名稱</strong><p style="color:inherit;opacity:.8">公司名稱／統編</p></div>
+  <div><strong>關於我們</strong><a href="#">品牌故事</a><a href="#">門市資訊</a></div>
+  <div><strong>顧客服務</strong><a href="#">隱私權政策</a><a href="#">條款與細則</a><a href="#">退換貨政策</a></div>
+  <div><strong>聯絡我們</strong><a href="#">地址</a><a href="#">電話</a><a href="#">營業時間</a></div>
+</div></footer>
+<a class="btn fab" href="#">線上諮詢</a>
+<div class="layer" id="cartLayer"><aside class="drawer" aria-label="購物車">
+  <div class="row"><strong>購物車</strong><button class="icon" data-close>關閉</button></div>
+  <div id="cartBody"></div><p id="cartTotal" style="margin-top:16px;color:var(--ink);font-weight:700"></p>
+  <button class="btn" id="btnCheckout" style="width:100%">前往結帳</button></aside></div>
+<div class="layer" id="authLayer"><div class="modal" role="dialog" aria-label="會員登入"><h3>會員登入</h3>
+  <label>電子郵件<input type="email" id="authEmail" autocomplete="email"></label>
+  <label>密碼<input type="password" id="authPass" autocomplete="current-password"></label>
+  <p id="authMsg" style="min-height:1.5em"></p>
+  <button class="btn" id="authSubmit" type="button">登入</button> <button class="btn ghost" data-close type="button">取消</button></div></div>
+<script src="app.js"></script>
+</body>
+</html>
