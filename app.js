@@ -1,4 +1,4 @@
-/* ===== CLOUDSHELL 單品募資頁（前端骨架） =====
+/* ===== 90s 止滑劑 單品募資頁（前端骨架） =====
    純 HTML / CSS / JavaScript，無框架、無外部圖片。
    之後接後端：搜尋 TODO，替換 api 物件內的實作即可。 */
 (function () {
@@ -28,7 +28,7 @@
     get: function (k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
     set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   };
-  var state = { camp: null, plans: [], cart: store.get('cs_cart', []), user: store.get('cs_user', null), buy: null, mode: 'login' };
+  var state = { camp: null, plans: [], cart: store.get('s90_cart', []), user: store.get('s90_user', null), mode: 'login' };
 
   var toastTimer;
   function toast(msg) {
@@ -62,83 +62,25 @@
     $('#cdD').textContent = p(d); $('#cdH').textContent = p(h); $('#cdM').textContent = p(m); $('#cdS').textContent = p(s);
   }
 
-  /* ---------- 圖表（範例：每月雨天日數） ---------- */
-  function renderChart() {
-    var data = [11, 12, 14, 16, 17, 15, 11, 13, 11, 9, 9, 10];
-    var W = 520, H = 280, L = 36, R = 12, T = 16, B = 30, max = 20;
-    var x = function (i) { return L + i * (W - L - R) / (data.length - 1); };
-    var y = function (v) { return T + (1 - v / max) * (H - T - B); };
-    var g = '', i;
-    for (i = 0; i <= 4; i++) {
-      var v = i * 5;
-      g += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '"/><text x="' + (L - 8) + '" y="' + (y(v) + 4) + '" text-anchor="end">' + v + '</text>';
-    }
-    var pts = data.map(function (v, k) { return x(k) + ',' + y(v); }).join(' ');
-    var area = 'M' + x(0) + ',' + y(0) + ' L' + pts.replace(/ /g, ' L') + ' L' + x(data.length - 1) + ',' + y(0) + 'Z';
-    var dots = '', labs = '';
-    data.forEach(function (v, k) {
-      if (k % 3 === 0 || k === 4) dots += '<circle cx="' + x(k) + '" cy="' + y(v) + '" r="4"/>';
-      labs += '<text x="' + x(k) + '" y="' + (H - 8) + '" text-anchor="middle">' + (k + 1) + '月</text>';
-    });
-    $('#chart').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="每月雨天日數折線圖（範例）">' +
-      '<defs><linearGradient id="areaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f7db3" stop-opacity=".28"/><stop offset="1" stop-color="#2f7db3" stop-opacity="0"/></linearGradient></defs>' +
-      '<g class="grid">' + g + '</g><path class="area" d="' + area + '"/><polyline class="ln" points="' + pts + '"/>' + dots + labs + '</svg>';
-  }
-
-  /* ---------- 使用情境 ---------- */
-  function renderUses() {
-    var u = [
-      ['通勤上班', '騎車、搭捷運都舒適', '#2f7db3'], ['週末旅行', '摺起來不佔行李空間', '#c08a4a'],
-      ['輕量登山', '風大、起霧都能擋', '#6f7f5f'], ['騎車運動', '透氣不悶，不黏身', '#4d6a86'],
-      ['露營野餐', '傍晚溫差也安心', '#a0644a'], ['校園日常', '版型簡潔，百搭', '#5a7d8e']
-    ];
-    $('#uses').innerHTML = u.map(function (a) {
-      return '<div class="use rv" style="background:linear-gradient(135deg,' + a[2] + ',' + a[2] + 'cc)"><svg class="ic"><use href="#i-wind"/></svg><b>' + a[0] + '</b><span>' + a[1] + '</span></div>';
-    }).join('');
-  }
-
   /* ---------- 方案 ---------- */
   function renderPlans() {
-    var colorHex = '#2f7db3';
     $('#planGrid').innerHTML = state.plans.map(function (p) {
-      var jk = '', i;
-      for (i = 0; i < p.pieces; i++) jk += (i ? '<span class="plus">+</span>' : '') + '<svg style="color:' + colorHex + '"><use href="#jacket"/></svg>';
       var left = Math.round(p.stock / p.stockMax * 100);
       return '<article class="plan rv' + (p.badge ? ' hot' : '') + '">' +
         (p.badge ? '<span class="tag">' + esc(p.badge) + '</span>' : '') +
         '<span class="kicker">' + esc(p.tag) + '</span><h3>' + esc(p.name) + '</h3><p class="sub2">' + esc(p.sub) + '</p>' +
-        '<div class="pieces">' + jk + '</div>' +
+        '<img class="pimg" src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy">' +
         '<div class="price">' + money(p.price) + '<small>' + money(p.orig) + '</small></div>' +
-        '<p class="avg">平均每件 ' + money(Math.round(p.price / p.pieces)) + '（' + (p.price / p.orig * 10).toFixed(1) + ' 折）</p>' +
+        '<p class="avg">平均每瓶 ' + money(Math.round(p.price / p.pieces)) + '（' + (p.price / p.orig * 10).toFixed(1) + ' 折）</p>' +
         '<ul>' + p.points.map(function (t) { return '<li><svg class="ic"><use href="#i-check"/></svg>' + esc(t) + '</li>'; }).join('') + '</ul>' +
         '<p class="stock">限量剩餘 ' + p.stock + ' 組</p><div class="bar"><i style="width:' + left + '%"></i></div>' +
-        '<button class="btn block" data-buy="' + p.id + '">立即贊助</button></article>';
+        '<button class="btn block" data-buy="' + p.id + '">加入購物車</button></article>';
     }).join('');
     observe();
   }
 
-  /* ---------- 選規格 ---------- */
-  function openOptions(id) {
-    var p = state.plans.filter(function (x) { return x.id === id; })[0]; if (!p) return;
-    var picks = [], i; for (i = 0; i < p.pieces; i++) picks.push({ color: state.camp.colors[0].id, size: 'M' });
-    state.buy = { plan: p, picks: picks };
-    $('#optTitle').textContent = p.name;
-    $('#optSub').textContent = '請為每一件外套選擇顏色與尺寸';
-    $('#optPrice').textContent = money(p.price);
-    drawOptions(); openLayer('optLayer');
-  }
-  function drawOptions() {
-    var b = state.buy, c = state.camp;
-    $('#optBody').innerHTML = b.picks.map(function (pk, i) {
-      var cname = c.colors.filter(function (x) { return x.id === pk.color; })[0].name;
-      return '<div class="opt-row"><b>第 ' + (i + 1) + ' 件・' + cname + ' / ' + pk.size + '</b>' +
-        '<div class="sw">' + c.colors.map(function (k) { return '<button class="' + (k.id === pk.color ? 'on' : '') + '" style="background:' + k.hex + '" data-oc="' + i + ':' + k.id + '" aria-label="' + k.name + '"></button>'; }).join('') + '</div>' +
-        '<div class="szs">' + c.sizes.map(function (s) { return '<button class="' + (s === pk.size ? 'on' : '') + '" data-os="' + i + ':' + s + '">' + s + '</button>'; }).join('') + '</div></div>';
-    }).join('');
-  }
-
   /* ---------- 購物車 ---------- */
-  function saveCart() { store.set('cs_cart', state.cart); updateCart(); }
+  function saveCart() { store.set('s90_cart', state.cart); updateCart(); }
   function totals() {
     var sub = 0; state.cart.forEach(function (it) { sub += it.price * it.qty; });
     var ship = sub === 0 || sub >= state.camp.freeShip ? 0 : state.camp.shipFee;
@@ -156,11 +98,7 @@
     $('#freeBar').innerHTML = t.sub === 0 ? '滿 ' + money(fs) + ' 免運' : (rest > 0 ? '再買 ' + money(rest) + ' 即可免運' : '已達免運門檻') +
       '<div class="bar"><i style="width:' + Math.min(100, t.sub / fs * 100) + '%"></i></div>';
     $('#cartBody').innerHTML = state.cart.length ? state.cart.map(function (it, i) {
-      var det = it.picks.map(function (pk) {
-        var cn = state.camp.colors.filter(function (x) { return x.id === pk.color; })[0];
-        return (cn ? cn.name : pk.color) + '/' + pk.size;
-      }).join('、');
-      return '<div class="ci"><div class="mini"><svg><use href="#jacket"/></svg></div><div><b>' + esc(it.name) + '</b><small>' + esc(det) + '</small>' +
+      return '<div class="ci"><div class="mini"><img src="' + esc(it.img) + '" alt=""></div><div><b>' + esc(it.name) + '</b><small>共 ' + (it.pieces * it.qty) + ' 瓶</small>' +
         '<div class="qty"><button data-qty="' + i + ':-1" aria-label="減少">－</button><span>' + it.qty + '</span><button data-qty="' + i + ':1" aria-label="增加">＋</button></div></div>' +
         '<div style="text-align:right"><b>' + money(it.price * it.qty) + '</b><br><button class="rm" data-rm="' + i + '">移除</button></div></div>';
     }).join('') : '<p class="empty">購物車是空的</p>';
@@ -168,9 +106,11 @@
     $('#btnCheckout').disabled = !state.cart.length;
     $('#btnCheckout').style.opacity = state.cart.length ? 1 : .5;
   }
-  function addToCart() {
-    var b = state.buy, p = b.plan;
-    state.cart.push({ id: p.id, name: p.name, price: p.price, qty: 1, picks: b.picks.map(function (x) { return { color: x.color, size: x.size }; }) });
+  function addToCart(id) {
+    var p = state.plans.filter(function (x) { return x.id === id; })[0]; if (!p) return;
+    var ex = state.cart.filter(function (x) { return x.id === id; })[0];
+    if (ex) ex.qty = Math.min(9, ex.qty + 1);
+    else state.cart.push({ id: p.id, name: p.name, price: p.price, qty: 1, pieces: p.pieces, img: p.img });
     saveCart(); closeAll(); toast('已加入購物車'); openLayer('cartLayer');
   }
 
@@ -209,7 +149,7 @@
     if (d.pw.length < 6) { msg.textContent = '密碼至少 6 碼'; return; }
     if (state.mode === 'register' && !d.name) { msg.textContent = '請輸入姓名'; return; }
     api[state.mode](d).then(function (r) {
-      state.user = { name: r.name }; store.set('cs_user', state.user);
+      state.user = { name: r.name }; store.set('s90_user', state.user);
       closeAll(); toast('嗨，' + r.name + '（範例登入）'); f.reset();
     });
   }
@@ -234,7 +174,7 @@
     requestAnimationFrame(step);
   }
   function observe() {
-    var targets = $$('.rv:not(.in),.chart,[data-count],.hb i');
+    var targets = $$('.rv:not(.in),[data-count]');
     if (!('IntersectionObserver' in window)) {
       targets.forEach(function (el) { reveal(el); }); return;
     }
@@ -246,7 +186,6 @@
   function reveal(el) {
     el.classList.add('in');
     if (el.hasAttribute('data-count')) countUp(el);
-    if (el.hasAttribute('data-w')) el.style.width = el.getAttribute('data-w') + '%';
   }
 
   /* ---------- 其他區塊渲染 ---------- */
@@ -255,20 +194,18 @@
   }
   function renderReviews(list) {
     $('#rail').innerHTML = list.map(function (r) {
-      return '<article class="rv-card"><div class="stars">★★★★★</div><p>' + esc(r.text) + '</p><div class="who"><i>' + esc(r.name.charAt(0)) + '</i><div><b>' + esc(r.name) + '</b><small>' + esc(r.role) + '</small></div></div></article>';
+      return '<figure class="shot"><img src="' + esc(r.img) + '" alt="' + esc(r.alt) + '" loading="lazy"></figure>';
     }).join('');
   }
 
   /* ---------- 事件 ---------- */
   document.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-open],[data-close],[data-buy],[data-oc],[data-os],[data-qty],[data-rm],[data-tab],[data-toast]');
+    var t = e.target.closest('[data-open],[data-close],[data-buy],[data-qty],[data-rm],[data-tab],[data-toast]');
     if (!t) return;
     if (t.hasAttribute('data-toast')) { e.preventDefault(); toast(t.getAttribute('data-toast')); return; }
     if (t.hasAttribute('data-open')) { var id = t.getAttribute('data-open'); openLayer(id === 'cart' ? 'cartLayer' : 'authLayer'); if (id === 'auth') setMode(state.mode); return; }
     if (t.hasAttribute('data-close')) { closeAll(); return; }
-    if (t.hasAttribute('data-buy')) { openOptions(t.getAttribute('data-buy')); return; }
-    if (t.hasAttribute('data-oc')) { var a = t.getAttribute('data-oc').split(':'); state.buy.picks[+a[0]].color = a[1]; drawOptions(); return; }
-    if (t.hasAttribute('data-os')) { var s = t.getAttribute('data-os').split(':'); state.buy.picks[+s[0]].size = s[1]; drawOptions(); return; }
+    if (t.hasAttribute('data-buy')) { addToCart(t.getAttribute('data-buy')); return; }
     if (t.hasAttribute('data-qty')) { var q = t.getAttribute('data-qty').split(':'), it = state.cart[+q[0]]; it.qty = Math.max(1, Math.min(9, it.qty + +q[1])); saveCart(); return; }
     if (t.hasAttribute('data-rm')) { state.cart.splice(+t.getAttribute('data-rm'), 1); saveCart(); return; }
     if (t.hasAttribute('data-tab')) { setMode(t.getAttribute('data-tab')); return; }
@@ -277,7 +214,6 @@
 
   /* ---------- 啟動 ---------- */
   function init() {
-    $('#optAdd').addEventListener('click', addToCart);
     $('#btnCheckout').addEventListener('click', openCheckout);
     $('#coForm').addEventListener('submit', submitCheckout);
     $('#authForm').addEventListener('submit', submitAuth);
@@ -297,7 +233,7 @@
       links.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
     }, { passive: true });
 
-    initBA(); renderChart(); renderUses(); setMode('login');
+    initBA(); setMode('login');
 
     Promise.all([api.getCampaign(), api.getPlans(), api.getFaq(), api.getReviews()]).then(function (r) {
       state.camp = r[0]; state.plans = r[1];

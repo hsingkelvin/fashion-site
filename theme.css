@@ -1,16 +1,17 @@
 /* 主題變數：改這裡就能換整站配色 */
 :root{
   --bg:#ffffff;
-  --ink:#1f2a33;
-  --muted:#66737d;
-  --line:#e1eaf0;
-  --soft:#eef5f9;
-  --accent:#2f7db3;
-  --accent-dark:#23628f;
-  --mark:#ffe45e;
+  --ink:#1f2328;
+  --muted:#667580;
+  --line:#dde9f0;
+  --soft:#eaf4fa;
+  --accent:#2186b9;
+  --accent-dark:#17668f;
+  --mark:#ffee00;
+  --yellow:#ffe900;
   --danger:#e0573b;
   --chat:#22b573;
   --radius:22px;
-  --shadow:0 10px 30px rgba(31,42,51,.08);
+  --shadow:0 10px 30px rgba(31,35,40,.08);
   --wrap:1120px;
 }

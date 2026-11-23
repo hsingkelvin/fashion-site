@@ -1,20 +1,18 @@
-# 服飾品牌落地頁（前端骨架）
+# 90s 止滑劑｜單品募資頁（前端骨架）
 
-純靜態網站，無需建置。所有檔案都放在最上層。
+純 HTML / CSS / JavaScript 的單一商品募資長頁，無框架。所有金額、方案與庫存都是假資料；後端尚未串接。
 
-## 本機預覽
-python3 -m http.server 8000，然後開 http://localhost:8000
+## 結構
+- `index.html`：整頁內容與各區塊
+- `theme.css`：配色變數（改這裡可換整站色系）
+- `style.css`：版面與響應式（RWD）
+- `app.js`：互動（募資進度、倒數、前後對比拉桿、購物車、結帳、登入）
+- `campaign.json` / `plans.json` / `faq.json` / `reviews.json`：假資料
+- `img/`：頁面使用的圖片與動態圖
 
-## 檔案
-- index.html：頁面骨架
-- style.css：版型；theme.css：品牌色票（改這個換色）
-- app.js：商品篩選、快覽、搜尋、收藏、購物車、結帳表單、登入註冊；api 物件是後端接口（TODO 處）
-- products.json、nav.json、faq.json、reviews.json：假資料
-- 商品圖是 app.js 內自繪的 SVG 插畫，換成實拍圖時在 products.json 加 image 欄位並調整卡片與快覽的圖片區
+## 接後端
+在 `app.js` 搜尋 `TODO`，把 `api` 物件裡的實作換成你的 API：
+`GET /campaign`、`GET /plans`、`GET /faq`、`GET /reviews`、`POST /auth/login`、`POST /auth/register`、`POST /orders`。
 
-## 前端狀態
-購物車與收藏存在瀏覽器 localStorage，換裝置不會同步，等後端完成再改。
-
-## 注意
-- 已加 noindex 與 robots.txt，請搜尋引擎不要收錄（不等於私密）。
-- 標示「範例」的文案、數據、檢驗項目皆為假資料，上線前請換成實際內容。
+## 預覽
+GitHub Pages（Deploy from branch → main / root）。`robots.txt` 與 `noindex` 已設定不被搜尋引擎收錄。
