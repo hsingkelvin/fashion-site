@@ -1,2 +1,16 @@
-/* 品牌色票：改這個檔就能換整站色系 */
-:root{--bg:#fff;--ink:#333;--muted:#6b7780;--line:#e3ebef;--soft:#f3f8fb;--accent:#2086b5;--accent-dark:#176a90;--mark:#ffe45e;--chat:#22b573;--radius:20px}
+/* 主題變數：改這裡就能換整站配色 */
+:root{
+  --bg:#ffffff;
+  --ink:#1f2a33;
+  --muted:#66737d;
+  --line:#e1eaf0;
+  --soft:#eef5f9;
+  --accent:#2f7db3;
+  --accent-dark:#23628f;
+  --mark:#ffe45e;
+  --danger:#e0573b;
+  --chat:#22b573;
+  --radius:22px;
+  --shadow:0 10px 30px rgba(31,42,51,.08);
+  --wrap:1120px;
+}

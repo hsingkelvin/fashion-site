@@ -1,181 +1,411 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#ffffff">
-<title>服飾品牌落地頁（骨架）</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>CLOUDSHELL 雲感外套｜募資中（範例頁面）</title>
+<meta name="description" content="單一商品募資頁前端骨架：HTML / CSS / JavaScript，假資料版本。">
 <link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="announce" id="announce">【範例】全館滿 NT$ 1,500 免運 ・ 7 天鑑賞期<button class="link" id="annClose" aria-label="關閉公告">×</button></div>
-<header><div class="wrap nav">
-  <a class="logo" href="#top"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l10 10-10 10L2 12z" fill="var(--accent)"/><path d="M12 7l5 5-5 5-5-5z" fill="#fff"/></svg>品牌名稱</a>
-  <ul class="menu" id="menu"></ul>
-  <div class="tools">
-    <button class="icon" id="btnSearch" aria-label="搜尋"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg></button>
-    <button class="icon" id="btnAuth" aria-label="會員登入"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></button>
-    <button class="icon" id="btnCart" aria-label="購物車"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span class="badge" id="cartCount">0</span></button>
-    <button class="icon burger" id="burger" aria-label="開啟選單"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+
+<!-- ===== SVG 圖庫（自繪插圖，無外部圖片） ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="jacket" viewBox="0 0 400 420">
+    <path d="M150 96C150 44 250 44 250 96L268 128 200 150 132 128Z" fill="currentColor"/>
+    <path d="M132 128L200 150 268 128 330 150 372 292 326 308 296 238V392Q200 410 104 392V238L74 308 28 292 70 150Z" fill="currentColor"/>
+    <path d="M150 98C150 64 250 64 250 98L200 150Z" fill="#000" opacity=".2"/>
+    <path d="M200 150V402" stroke="#000" stroke-opacity=".28" stroke-width="4"/>
+    <path d="M122 300h56v52h-56zM222 300h56v52h-56z" fill="#000" opacity=".12"/>
+    <path d="M28 292l46 16-8 22-46-16zM372 292l-46 16 8 22 46-16z" fill="#000" opacity=".18"/>
+    <path d="M104 380Q200 398 296 380V392Q200 410 104 392Z" fill="#000" opacity=".18"/>
+    <path d="M78 160l52-20-20 160-26-10z" fill="#fff" opacity=".13"/>
+    <path d="M186 150v36M214 150v36" stroke="#fff" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="drop" viewBox="0 0 24 24"><path d="M12 2S5 10 5 15a7 7 0 0014 0C19 10 12 2 12 2z" fill="currentColor"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8zM9 8V6a3 3 0 016 0v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H11l-5 4v-4H4z" fill="currentColor"/></symbol>
+  <symbol id="i-feather" viewBox="0 0 24 24"><path d="M20 4c-8 0-13 5-13 12v4M20 4c0 8-5 13-12 13M7 20l6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 9h11a3 3 0 10-3-3M3 15h15a3 3 0 11-3 3M3 12h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="announce">【範例頁面】此為前端骨架與假資料，所有金額、數據與人物皆為示意</div>
+
+<header class="head" id="head">
+  <div class="wrap head-in">
+    <a class="logo" href="#top" aria-label="回到頂端"><svg class="ic"><use href="#drop"/></svg><span>CLOUDSHELL</span></a>
+    <nav class="menu" id="menu" aria-label="主選單">
+      <a href="#why">專案亮點</a>
+      <a href="#tech">微孔科技</a>
+      <a href="#data">實測數據</a>
+      <a href="#compare">規格比較</a>
+      <a href="#plans">贊助方案</a>
+      <a href="#faq">常見問題</a>
+    </nav>
+    <div class="tools">
+      <button class="icon" data-open="auth" aria-label="會員登入"><svg class="ic"><use href="#i-user"/></svg></button>
+      <button class="icon" data-open="cart" aria-label="購物車"><svg class="ic"><use href="#i-bag"/></svg><span class="badge" id="cartCount">0</span></button>
+      <button class="icon burger" id="burger" aria-label="開啟選單"><svg class="ic"><use href="#i-menu"/></svg></button>
+    </div>
   </div>
-</div></header>
-<main id="top">
-<section class="hero"><div class="wrap">
-  <div>
-    <p class="eyebrow">NEW ARRIVALS</p>
-    <h1>日常穿得舒服，<mark>才是好看</mark></h1>
-    <p class="lead" style="margin-bottom:24px">【範例文案】用耐穿的面料與俐落剪裁，做每天都想穿的基本款。</p>
-    <div class="cta"><a class="btn" href="#plans">逛逛新品</a><a class="btn ghost" href="#sizing">看尺寸指南</a></div>
-    <ul class="trust"><li>7 天鑑賞期（範例）</li><li>48 小時出貨（範例）</li><li>滿額免運（範例）</li></ul>
+</header>
+
+<main>
+
+<!-- 1. HERO + 募資進度 -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill">募資累積 NT$ <b id="heroRaised">12,860,000</b>+</span>
+      <h1>CLOUDSHELL 雲感外套</h1>
+      <p class="big">越下雨，<br><mark>越輕盈。</mark></p>
+      <p class="lead">不悶熱、不笨重、不像雨衣。<br><b>285g</b> 輕量，<b>3 秒</b>收進胸口袋。</p>
+      <div class="cta-row">
+        <a class="btn" href="#plans">立即贊助</a>
+        <a class="btn ghost" href="#data">查看實測</a>
+      </div>
+      <div class="fund" id="fund">
+        <div class="fund-top">
+          <div><small>已募得金額</small><strong id="fRaised">NT$ 0</strong></div>
+          <div class="fund-pct"><strong id="fPct">0%</strong><small>達成率</small></div>
+        </div>
+        <div class="bar"><i id="fBar"></i></div>
+        <div class="fund-grid">
+          <div><strong id="fBackers">0</strong><small>位贊助者</small></div>
+          <div><strong id="fDays">0</strong><small>天後結束</small></div>
+          <div><strong id="fGoal">NT$ 0</strong><small>募資目標</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="scene sc-hero">
+        <svg class="jk" style="color:#26303a"><use href="#jacket"/></svg>
+        <svg class="d d1"><use href="#drop"/></svg><svg class="d d2"><use href="#drop"/></svg>
+        <svg class="d d3"><use href="#drop"/></svg><svg class="d d4"><use href="#drop"/></svg>
+        <span class="tagc t1">防潑水 5 級</span><span class="tagc t2">285g</span>
+      </div>
+    </div>
   </div>
-  <div class="tiles" id="tiles" aria-hidden="true"></div>
-</div></section>
-<section id="cats"><div class="wrap">
-  <h2>依分類<mark>選購</mark></h2>
-  <div class="cats" id="catGrid"></div>
-</div></section>
-<section class="promo-sec" id="promo"><div class="wrap">
-  <div class="promo">
-    <div><h2>本週限定 全館 85 折（範例）</h2><p>結帳自動折抵，活動倒數：</p><div class="cd" id="cd">--</div></div>
-    <a class="btn" href="#plans">立即選購</a>
+</section>
+
+<!-- 2. 痛點 + 數據圖 -->
+<section class="sec soft" id="why">
+  <div class="wrap">
+    <h2 class="title"><small>雨天通勤</small>是一天中最狼狽的時刻。</h2>
+    <p class="sub">雨衣悶、雨傘難撐、外套一濕就重。<br>我們想做一件下雨也能穿得好看的外套。</p>
+    <div class="two">
+      <article class="card chart-card rv">
+        <h3>每月雨天日數趨勢</h3>
+        <p class="note">單位：天／月（範例數據）</p>
+        <div id="chart" class="chart"></div>
+      </article>
+      <article class="card rv">
+        <h3>設計與測試團隊共同推薦</h3>
+        <p>一次突然的大雨，就可能毀掉整天的行程。提前準備，讓「下雨」不再是麻煩。</p>
+        <ul class="people" id="people">
+          <li><i>林</i><div><b>林設計師</b><span>版型設計・範例</span></div></li>
+          <li><i>陳</i><div><b>陳工程師</b><span>布料研發・範例</span></div></li>
+          <li><i>王</i><div><b>王測試員</b><span>戶外實測・範例</span></div></li>
+        </ul>
+      </article>
+    </div>
   </div>
-</div></section>
-<section class="alt" id="plans"><div class="wrap">
-  <h2>精選<mark>商品</mark></h2>
-  <p class="lead">【範例】商品圖為自繪插畫，之後可換成實拍照片。</p>
-  <div class="bar">
-    <div class="chips" id="chips"></div>
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span id="count"></span><span id="qchip"></span>
-      <label>排序 <select id="sort" aria-label="排序"><option value="rec">推薦</option><option value="asc">價格低到高</option><option value="desc">價格高到低</option></select></label></div>
+</section>
+
+<!-- 3. 技術橋接 -->
+<section class="sec bridge" id="tech">
+  <div class="wrap center">
+    <span class="eyebrow">MICROPORE TECH</span>
+    <h2 class="title">微孔科技</h2>
+    <p class="sub big2">三層微孔膜，讓水珠<b>滾走</b>、汗氣<b>散出</b>，<br>輕薄卻不悶熱。</p>
+    <svg class="ic chev"><use href="#i-down"/></svg>
   </div>
-  <div class="grid" id="planGrid"><p>載入中…</p></div>
-</div></section>
-<section id="problem"><div class="wrap">
-  <h2>為什麼選<mark>我們</mark></h2>
-  <p class="lead">【範例文案】三個讓日常更好穿的理由。</p>
-  <div class="grid stats">
-    <div class="card"><div class="num">98%</div><h3>面料舒適度</h3><p>範例數據。正式上線請換成自己的調查結果並註明來源。</p></div>
-    <div class="card"><div class="num">3 道</div><h3>版型打樣</h3><p>範例數據。說明每件衣服出貨前的修版流程。</p></div>
-    <div class="card"><div class="num">48 hr</div><h3>快速出貨</h3><p>範例數據。現貨商品的出貨時間。</p></div>
+</section>
+
+<!-- 4. 前後對比 -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="title">穿上就有，隱形的防護。</h2>
+    <p class="sub">拖曳中間的拉桿，看看雨水落在布料上的差別。</p>
+    <div class="ba rv" id="ba">
+      <div class="ba-layer ba-a"><span class="ba-tag">一般外套</span></div>
+      <div class="ba-layer ba-b" id="baTop"><span class="ba-tag acc">CLOUDSHELL</span></div>
+      <div class="ba-handle" id="baHandle"><i></i></div>
+      <input type="range" min="0" max="100" value="50" id="baRange" aria-label="前後對比滑桿">
+    </div>
+    <p class="caption">左：水分滲入、布料變重變冷。右：水珠成形滾落，布料依舊乾爽。<br><span class="note">＊示意插圖，非實拍</span></p>
   </div>
-</div></section>
-<section class="alt" id="tech"><div class="wrap">
-  <h2>面料<mark>比一比</mark></h2>
-  <p class="lead">【範例文案】織法越密、起毬越少，穿洗後仍然挺。</p>
-  <div class="grid">
-    <div class="card"><div class="swatch a"></div><h3>一般面料</h3><p>織紋鬆散，洗幾次容易變形、起毬。</p></div>
-    <div class="card"><div class="swatch b"></div><h3>本品牌面料</h3><p>緊密織法，觸感柔軟，耐洗不走樣。</p></div>
+</section>
+
+<!-- 5. 實測數據 -->
+<section class="sec soft" id="data">
+  <div class="wrap">
+    <h2 class="title">防潑水等級，<mark>提升 4 倍</mark>。</h2>
+    <p class="sub">以下為範例測試數據，上線時請換成實際檢測報告。</p>
+    <div class="stats">
+      <div class="stat rv"><b data-count="20000">0</b><span>mm 耐水壓</span></div>
+      <div class="stat rv"><b data-count="15000">0</b><span>g/m²/24h 透氣</span></div>
+      <div class="stat rv"><b data-count="285">0</b><span>g 整件重量</span></div>
+      <div class="stat rv"><b data-count="50">0</b><span>次水洗後維持</span></div>
+    </div>
+    <div class="card cmp-bars rv">
+      <h3>耐水壓比較（mm）</h3>
+      <div class="hb"><label>一般防風外套</label><div><i data-w="15"></i></div><em>3,000</em></div>
+      <div class="hb"><label>一般輕便雨衣</label><div><i data-w="55"></i></div><em>11,000</em></div>
+      <div class="hb on"><label>CLOUDSHELL</label><div><i data-w="100"></i></div><em>20,000</em></div>
+    </div>
   </div>
-</div></section>
-<section id="lookbook"><div class="wrap">
-  <h2>穿搭<mark>靈感</mark></h2>
-  <p class="lead">【範例文案】四個場合，一鍵參考搭配組合。</p>
-  <div class="looks" id="lookGrid"></div>
-</div></section>
-<section class="alt" id="brand"><div class="wrap"><div class="brand">
-  <div>
-    <h2>我們的<mark>品牌故事</mark></h2>
-    <p>【範例文案】我們從一件好穿的白 T 開始，希望每個人都能找到舒服、耐穿、不費力的日常。</p>
-    <p>【範例文案】每個款式都經過多次試穿與修版，從面料、剪裁到細節，只留下真正會常穿的設計。</p>
-    <a class="btn ghost" href="#faq">了解更多</a>
+</section>
+
+<!-- 6. 三步驟 -->
+<section class="sec" id="steps">
+  <div class="wrap">
+    <h2 class="title">3 秒收納，<br>一個人就能完成。</h2>
+    <p class="sub">不用專用收納盒，折進胸口袋就好。</p>
+    <ol class="steps">
+      <li class="card rv"><i>1</i><svg class="ic big"><use href="#jacket"/></svg><h3>拉上拉鍊</h3><p>脫下外套，拉到最上方，避免布料外露。</p></li>
+      <li class="card rv"><i>2</i><svg class="ic big"><use href="#i-feather"/></svg><h3>翻出胸口袋</h3><p>把內側口袋翻出，成為收納袋。</p></li>
+      <li class="card rv"><i>3</i><svg class="ic big"><use href="#i-box"/></svg><h3>捲起收納</h3><p>由下往上捲起塞入，拳頭大小帶著走。</p></li>
+    </ol>
   </div>
-  <div class="tiles" id="brandTiles" aria-hidden="true"></div>
-</div></div></section>
-<section id="how"><div class="wrap">
-  <h2>三步驟買到<mark>合身</mark>的衣服</h2>
-  <div class="steps">
-    <div class="card"><h3>選款式</h3><p>依場合挑選喜歡的單品與顏色。</p></div>
-    <div class="card"><h3>對照尺寸</h3><p>用尺寸指南對照你的量身數據。</p></div>
-    <div class="card"><h3>下單收貨</h3><p>確認方案後結帳，等著收貨。</p></div>
+</section>
+
+<!-- 7. 產品特色（左右交錯） -->
+<section class="sec soft">
+  <div class="wrap">
+    <h2 class="title"><small>新一代設計</small>三個細節，穿上就懂。</h2>
+    <div class="feat">
+      <article class="row rv">
+        <div class="scene sc-a"><svg class="jk" style="color:#7fa3be"><use href="#jacket"/></svg><span class="tagc t1">全壓膠接縫</span></div>
+        <div class="copy"><h3>全壓膠接縫，<br>縫線不進水</h3><p>肩線、袖口與口袋邊緣全數壓膠，讓雨水找不到入口。</p></div>
+      </article>
+      <article class="row rev rv">
+        <div class="scene sc-b"><svg class="jk" style="color:#c9b79c"><use href="#jacket"/></svg><span class="tagc t1">285g</span></div>
+        <div class="copy"><h3>285g 超輕量，<br>像沒穿一樣</h3><p>採用輕量尼龍織物，整件約一杯咖啡的重量，通勤一整天也不累。</p></div>
+      </article>
+      <article class="row rv">
+        <div class="scene sc-c"><svg class="jk" style="color:#6f7f5f"><use href="#jacket"/></svg><span class="tagc t1">透氣腋下設計</span></div>
+        <div class="copy"><h3>腋下透氣孔，<br>悶熱立刻散去</h3><p>隱藏式透氣孔設計，走路、騎車都能順暢排汗。</p></div>
+      </article>
+    </div>
   </div>
-</div></section>
-<section class="alt" id="certs"><div class="wrap">
-  <h2>品質<mark>檢驗</mark></h2>
-  <p class="lead">【範例】請填入你實際取得的檢驗項目與報告連結，不要放未經證實的宣稱。</p>
-  <div class="grid">
-    <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><h3>檢驗項目一</h3><p>結果與報告連結</p></div>
-    <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><h3>檢驗項目二</h3><p>結果與報告連結</p></div>
-    <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></div><h3>檢驗項目三</h3><p>結果與報告連結</p></div>
+</section>
+
+<!-- 8. 檢驗 -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="title">通過多項第三方檢驗。</h2>
+    <p class="sub">以下為範例標籤，正式版請放入真實檢驗報告。</p>
+    <ul class="certs">
+      <li class="rv"><svg class="ic"><use href="#i-check"/></svg>防潑水檢測<br><small>範例報告 A</small></li>
+      <li class="rv"><svg class="ic"><use href="#i-check"/></svg>耐水壓檢測<br><small>範例報告 B</small></li>
+      <li class="rv"><svg class="ic"><use href="#i-check"/></svg>透氣率檢測<br><small>範例報告 C</small></li>
+      <li class="rv"><svg class="ic"><use href="#i-check"/></svg>色牢度檢測<br><small>範例報告 D</small></li>
+      <li class="rv"><svg class="ic"><use href="#i-check"/></svg>無有害物質<br><small>範例報告 E</small></li>
+    </ul>
   </div>
-</div></section>
-<section id="compare"><div class="wrap">
-  <h2>與其他選擇<mark>比較</mark></h2>
-  <div class="compare"><table>
-    <thead><tr><th></th><th>快時尚</th><th>訂製</th><th>本品牌</th></tr></thead>
-    <tbody>
-      <tr><th>價格</th><td>低</td><td>高</td><td>中等</td></tr>
-      <tr><th>面料</th><td>普通</td><td>可選</td><td>精選</td></tr>
-      <tr><th>交期</th><td>即買即穿</td><td>數週</td><td>2～3 天</td></tr>
-      <tr><th>合身度</th><td>通用尺寸</td><td>量身</td><td>尺寸指南</td></tr>
-    </tbody></table></div>
-</div></section>
-<section class="alt" id="reviews"><div class="wrap">
-  <h2>穿過的人<mark>怎麼說</mark></h2>
-  <div class="rail" id="reviewRail"></div>
-</div></section>
-<section id="sizing"><div class="wrap">
-  <h2>尺寸<mark>指南</mark></h2>
-  <p class="lead">【範例數據】單位為公分，請換成實際量測。</p>
-  <div class="compare"><table>
-    <thead><tr><th>尺寸</th><th>胸寬</th><th>衣長</th><th>肩寬</th></tr></thead>
-    <tbody>
-      <tr><th>S</th><td>50</td><td>66</td><td>42</td></tr>
-      <tr><th>M</th><td>52</td><td>68</td><td>44</td></tr>
-      <tr><th>L</th><td>54</td><td>70</td><td>46</td></tr>
-      <tr><th>XL</th><td>56</td><td>72</td><td>48</td></tr>
-    </tbody></table></div>
-</div></section>
-<section class="alt" id="info"><div class="wrap">
-  <h2>購物<mark>須知</mark></h2>
-  <div class="grid">
-    <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div><h3>配送</h3><p>【範例】滿 NT$ 1,500 免運，未達門檻運費 NT$ 80。</p></div>
-    <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg></div><h3>退換貨</h3><p>【範例】7 天鑑賞期，商品未穿著且吊牌完整即可申請。</p></div>
-    <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></div><h3>付款</h3><p>【範例】支援信用卡、貨到付款與超商取貨付款。</p></div>
+</section>
+
+<!-- 9. 使用情境 -->
+<section class="sec soft">
+  <div class="wrap">
+    <h2 class="title">同樣適用於…</h2>
+    <p class="sub">只要會碰到雨與風，都是它的主場。</p>
+    <div class="uses" id="uses"></div>
   </div>
-</div></section>
-<section id="faq"><div class="wrap">
-  <h2>常見<mark>問題</mark></h2>
-  <div id="faqList"></div>
-</div></section>
-<section class="nl" id="newsletter"><div class="wrap">
-  <h2>訂閱電子報，領<mark style="color:var(--ink)">新品通知</mark></h2>
-  <p>【範例文案】第一時間收到新品與優惠資訊。</p>
-  <form id="nlForm"><input type="email" id="nlEmail" placeholder="輸入你的電子郵件" required aria-label="電子郵件"><button class="btn" type="submit">訂閱</button></form>
-</div></section>
+</section>
+
+<!-- 10. 比較表 -->
+<section class="sec" id="compare">
+  <div class="wrap">
+    <h2 class="title">現在，你的雨天裝備是哪一種？</h2>
+    <p class="sub">雨衣、防風外套各有死角，<br>CLOUDSHELL 一件解決通勤與旅行。</p>
+    <div class="tbl-wrap rv">
+      <table class="tbl">
+        <thead><tr><th></th><th>輕便雨衣</th><th>一般防風外套</th><th class="us">CLOUDSHELL</th></tr></thead>
+        <tbody>
+          <tr><th>防潑水</th><td>完全防水，但悶</td><td>淋久會濕透</td><td class="us">微孔膜＋防潑水</td></tr>
+          <tr><th>透氣</th><td>幾乎不透氣</td><td>普通</td><td class="us">腋下透氣孔</td></tr>
+          <tr><th>重量</th><td>約 350g</td><td>約 450g</td><td class="us">285g</td></tr>
+          <tr><th>收納</th><td>摺疊後偏大</td><td>難收納</td><td class="us">拳頭大小</td></tr>
+          <tr><th>外觀</th><td>不適合上班</td><td>偏運動風</td><td class="us">日常、通勤皆可</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 11. 使用者推薦（橫向輪播） -->
+<section class="sec soft" id="voices">
+  <div class="wrap">
+    <h2 class="title">使用者推薦</h2>
+    <div class="rail-wrap">
+      <button class="nav-btn l" id="rPrev" aria-label="上一則"><svg class="ic"><use href="#i-left"/></svg></button>
+      <div class="rail" id="rail"></div>
+      <button class="nav-btn r" id="rNext" aria-label="下一則"><svg class="ic"><use href="#i-right"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- 12. 贊助方案 -->
+<section class="sec" id="plans">
+  <div class="wrap">
+    <h2 class="title">買幾件，送幾件</h2>
+    <p class="sub">募資限定優惠，結束後恢復原價。</p>
+    <div class="count" id="count" aria-live="off">
+      <div><b id="cdD">00</b><small>天</small></div><div><b id="cdH">00</b><small>時</small></div>
+      <div><b id="cdM">00</b><small>分</small></div><div><b id="cdS">00</b><small>秒</small></div>
+    </div>
+    <div class="plans" id="planGrid"></div>
+    <p class="note center">臺灣本島免運，可寄離島。以上價格皆為範例。</p>
+  </div>
+</section>
+
+<!-- 13. 開箱 -->
+<section class="sec soft">
+  <div class="wrap">
+    <h2 class="title">開箱一覽</h2>
+    <div class="unbox rv">
+      <div class="scene sc-box">
+        <svg class="jk" style="color:#26303a"><use href="#jacket"/></svg>
+        <span class="tagc t1">收納袋</span><span class="tagc t2">吊牌・說明卡</span>
+      </div>
+      <ul class="list">
+        <li><svg class="ic"><use href="#i-check"/></svg>CLOUDSHELL 外套 × 1 件</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>專屬收納袋</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>尺寸與保養說明卡</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>感謝小卡（可寫祝福）</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 14. 保養教學 -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="title">穿著與保養教學</h2>
+    <ol class="steps teach">
+      <li class="card rv"><i>1</i><h3>輕柔水洗</h3><p>使用中性洗劑、低溫水洗，不要使用漂白水與柔軟精。</p></li>
+      <li class="card rv"><i>2</i><h3>低溫烘乾</h3><p>低溫烘乾或熨燙，可幫助防潑水層恢復。</p></li>
+      <li class="card rv"><i>3</i><h3>陰涼收納</h3><p>乾燥後以收納袋存放，避免長時間日曬。</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 15. LINE CTA -->
+<section class="sec cta">
+  <div class="wrap center">
+    <h2 class="title">不確定尺寸或顏色？</h2>
+    <p class="sub">購買前，加 LINE 由專人免費協助選尺寸。</p>
+    <a class="btn line" href="#" data-toast="這是範例按鈕，之後換成你的 LINE 連結">立即加入官方 LINE</a>
+  </div>
+</section>
+
+<!-- 16. FAQ -->
+<section class="sec soft" id="faq">
+  <div class="wrap narrow">
+    <h2 class="title">常見問題<small>FREQUENTLY ASKED QUESTIONS</small></h2>
+    <div class="faq" id="faqList"></div>
+  </div>
+</section>
+
 </main>
-<footer><div class="wrap fgrid">
-  <div><strong>品牌名稱</strong><p>公司名稱／統編</p></div>
-  <div><strong>關於我們</strong><a href="#brand">品牌故事</a><a href="#">門市資訊</a></div>
-  <div><strong>顧客服務</strong><a href="#info">購物須知</a><a href="#">隱私權政策</a><a href="#">條款與細則</a></div>
-  <div><strong>聯絡我們</strong><a href="#">地址</a><a href="#">電話</a><a href="#">營業時間</a></div>
-</div></footer>
-<a class="fab" href="#" aria-label="線上諮詢"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.8 3 3 6.4 3 10.6c0 2.5 1.4 4.6 3.6 6L6 20.5l3.6-2c.8.2 1.6.3 2.4.3 5.2 0 9-3.4 9-7.6S17.2 3 12 3z"/></svg></a>
-<button class="totop" id="toTop" aria-label="回到頂端"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div><div class="logo"><svg class="ic"><use href="#drop"/></svg><span>CLOUDSHELL</span></div>
+      <p>單品募資頁前端骨架（範例）</p></div>
+    <div><b>關於專案</b><a href="#why">專案亮點</a><a href="#tech">微孔科技</a><a href="#data">實測數據</a></div>
+    <div><b>顧客服務</b><a href="#faq">常見問題</a><a href="#plans">贊助方案</a><a href="#" data-toast="範例連結">退換貨說明</a></div>
+    <div><b>追蹤我們</b><a href="#" data-toast="範例連結">Instagram</a><a href="#" data-toast="範例連結">Facebook</a><a href="#" data-toast="範例連結">LINE</a></div>
+  </div>
+  <p class="copy">© CLOUDSHELL 範例專案．頁面中所有文案與數據均為示意</p>
+</footer>
+
+<!-- 浮動元件 -->
+<a class="fab" href="#" data-toast="範例：這裡之後連到 LINE 客服" aria-label="LINE 客服"><svg class="ic"><use href="#i-chat"/></svg></a>
+<button class="totop" id="toTop" aria-label="回到頂端"><svg class="ic"><use href="#i-up"/></svg></button>
+<div class="mbar" id="mbar">
+  <div><small>已募 <b id="mPct">0%</b></small><div class="bar sm"><i id="mBar"></i></div></div>
+  <a class="btn" href="#plans">立即贊助</a>
+</div>
 <div class="toast" id="toast" role="status"></div>
-<div class="layer" id="searchLayer"><div class="search-panel"><form id="sForm"><input id="sInput" type="search" placeholder="搜尋商品，例如：牛仔褲" autocomplete="off" aria-label="搜尋商品"></form><div id="sList" style="margin-top:12px"></div></div></div>
-<div class="layer" id="quickLayer"><div class="modal wide" role="dialog" aria-label="商品快覽"><button class="icon x" data-close aria-label="關閉">×</button><div id="qvBody"></div></div></div>
-<div class="layer" id="cartLayer"><aside class="drawer" aria-label="購物車">
-  <div class="row"><strong>購物車</strong><button class="link" data-close>關閉</button></div>
-  <div id="freeBar"></div><div id="cartBody"></div><div id="cartSum" style="margin:12px 0"></div>
-  <button class="btn" id="btnCheckout" style="width:100%">前往結帳</button></aside></div>
-<div class="layer" id="coLayer"><div class="modal wide" role="dialog" aria-label="結帳"><button class="icon x" data-close aria-label="關閉">×</button><h3>結帳</h3>
-  <div class="qv"><form id="coForm">
-    <label class="fld">姓名<input name="name" required autocomplete="name"></label>
-    <label class="fld">手機<input name="phone" type="tel" required autocomplete="tel"></label>
-    <label class="fld">電子郵件<input name="email" type="email" required autocomplete="email"></label>
-    <label class="fld">收件地址<input name="address" required autocomplete="street-address"></label>
-    <label class="fld">付款方式<select name="pay"><option>信用卡（範例）</option><option>貨到付款（範例）</option><option>超商取貨付款（範例）</option></select></label>
-    <p id="coMsg" style="min-height:1.5em"></p>
-    <button class="btn" type="submit" style="width:100%">送出訂單</button></form>
-    <div><h3>訂單摘要</h3><div id="coSum"></div></div></div></div></div>
-<div class="layer" id="authLayer"><div class="modal" role="dialog" aria-label="會員"><button class="icon x" data-close aria-label="關閉">×</button>
-  <div class="tabs"><button class="chip on" data-tab="login">登入</button><button class="chip" data-tab="register">註冊</button></div>
-  <label class="fld">電子郵件<input type="email" id="authEmail" autocomplete="email"></label>
-  <label class="fld">密碼<input type="password" id="authPass" autocomplete="current-password"></label>
-  <p id="authMsg" style="min-height:1.5em"></p>
-  <button class="btn" id="authSubmit" type="button" style="width:100%">登入</button></div></div>
+
+<!-- 選色／尺寸 -->
+<div class="layer" id="optLayer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <div class="modal" role="dialog" aria-label="選擇規格">
+    <button class="icon x" data-close aria-label="關閉"><svg class="ic"><use href="#i-x"/></svg></button>
+    <h3 id="optTitle">選擇規格</h3>
+    <p class="note" id="optSub"></p>
+    <div id="optBody"></div>
+    <div class="modal-foot"><b id="optPrice"></b><button class="btn" id="optAdd">加入購物車</button></div>
+  </div>
+</div>
+
+<!-- 購物車 -->
+<div class="layer right" id="cartLayer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <aside class="drawer" role="dialog" aria-label="購物車">
+    <div class="drawer-head"><h3>購物車</h3><button class="icon" data-close aria-label="關閉"><svg class="ic"><use href="#i-x"/></svg></button></div>
+    <div class="free" id="freeBar"></div>
+    <div class="drawer-body" id="cartBody"></div>
+    <div class="drawer-foot"><div id="cartSum"></div><button class="btn block" id="btnCheckout">前往結帳</button></div>
+  </aside>
+</div>
+
+<!-- 結帳 -->
+<div class="layer" id="coLayer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <div class="modal wide" role="dialog" aria-label="結帳">
+    <button class="icon x" data-close aria-label="關閉"><svg class="ic"><use href="#i-x"/></svg></button>
+    <h3>訂單結帳</h3>
+    <form id="coForm" class="co" novalidate>
+      <div class="fields">
+        <label>姓名<input name="name" required autocomplete="name"></label>
+        <label>手機<input name="phone" required inputmode="tel" autocomplete="tel"></label>
+        <label class="full">Email<input name="email" type="email" required autocomplete="email"></label>
+        <label class="full">收件地址<input name="addr" required autocomplete="street-address"></label>
+        <label class="full">付款方式
+          <select name="pay"><option>信用卡（範例）</option><option>超商取貨付款（範例）</option><option>ATM 轉帳（範例）</option></select>
+        </label>
+      </div>
+      <div class="co-sum" id="coSum"></div>
+      <p class="msg" id="coMsg" role="alert"></p>
+      <button class="btn block" type="submit">確認送出訂單</button>
+      <p class="note center">範例頁面：不會真的扣款，也不會傳送資料。</p>
+    </form>
+  </div>
+</div>
+
+<!-- 登入／註冊 -->
+<div class="layer" id="authLayer" aria-hidden="true">
+  <div class="mask" data-close></div>
+  <div class="modal" role="dialog" aria-label="會員">
+    <button class="icon x" data-close aria-label="關閉"><svg class="ic"><use href="#i-x"/></svg></button>
+    <div class="tabs"><button data-tab="login" class="on">登入</button><button data-tab="register">註冊</button></div>
+    <form id="authForm" novalidate>
+      <label class="reg-only">姓名<input name="name" autocomplete="name"></label>
+      <label>Email<input name="email" type="email" required autocomplete="email"></label>
+      <label>密碼<input name="pw" type="password" required minlength="6" autocomplete="current-password"></label>
+      <p class="msg" id="authMsg" role="alert"></p>
+      <button class="btn block" type="submit" id="authBtn">登入</button>
+      <p class="note center">範例頁面：尚未串接後端。</p>
+    </form>
+  </div>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>

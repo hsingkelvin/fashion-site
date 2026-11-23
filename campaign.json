@@ -1,0 +1,16 @@
+{
+  "name": "CLOUDSHELL 雲感輕量防潑水外套",
+  "goal": 1000000,
+  "raised": 12860000,
+  "backers": 9432,
+  "end": "2026-12-31T23:59:59+08:00",
+  "freeShip": 3000,
+  "shipFee": 100,
+  "colors": [
+    { "id": "black", "name": "墨黑", "hex": "#26303a" },
+    { "id": "sand", "name": "沙丘", "hex": "#c9b79c" },
+    { "id": "moss", "name": "苔綠", "hex": "#6f7f5f" },
+    { "id": "mist", "name": "霧藍", "hex": "#7fa3be" }
+  ],
+  "sizes": ["XS", "S", "M", "L", "XL", "2XL"]
+}
