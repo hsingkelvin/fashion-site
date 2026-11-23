@@ -1,6 +1,0 @@
-[{"label":"首頁","href":"#top"},
- {"label":"商品","children":[{"label":"全部商品","href":"#cat:all"},{"label":"上衣","href":"#cat:top"},{"label":"褲裝","href":"#cat:bottom"},{"label":"外套","href":"#cat:outer"},{"label":"洋裝","href":"#cat:dress"},{"label":"配件","href":"#cat:acc"}]},
- {"label":"穿搭靈感","href":"#lookbook"},
- {"label":"尺寸指南","href":"#sizing"},
- {"label":"購物須知","href":"#info"},
- {"label":"品牌故事","href":"#brand"}]
